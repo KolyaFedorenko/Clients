@@ -31,6 +31,9 @@ namespace Clients
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
             this.clientsView = new System.Windows.Forms.DataGridView();
+            this.comboRows = new System.Windows.Forms.ComboBox();
+            this.nextPage = new System.Windows.Forms.Button();
+            this.prevPage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.clientsView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,11 +45,43 @@ namespace Clients
             this.clientsView.Size = new System.Drawing.Size(885, 523);
             this.clientsView.TabIndex = 0;
             // 
+            // comboRows
+            // 
+            this.comboRows.FormattingEnabled = true;
+            this.comboRows.Location = new System.Drawing.Point(914, 42);
+            this.comboRows.Name = "comboRows";
+            this.comboRows.Size = new System.Drawing.Size(151, 21);
+            this.comboRows.TabIndex = 1;
+            this.comboRows.SelectedIndexChanged += new System.EventHandler(this.comboRows_SelectedIndexChanged);
+            // 
+            // nextPage
+            // 
+            this.nextPage.Location = new System.Drawing.Point(149, 545);
+            this.nextPage.Name = "nextPage";
+            this.nextPage.Size = new System.Drawing.Size(121, 65);
+            this.nextPage.TabIndex = 2;
+            this.nextPage.Text = "Следующая страница";
+            this.nextPage.UseVisualStyleBackColor = true;
+            this.nextPage.Click += new System.EventHandler(this.nextPage_Click);
+            // 
+            // prevPage
+            // 
+            this.prevPage.Location = new System.Drawing.Point(12, 545);
+            this.prevPage.Name = "prevPage";
+            this.prevPage.Size = new System.Drawing.Size(121, 65);
+            this.prevPage.TabIndex = 3;
+            this.prevPage.Text = "Предыдущая страница";
+            this.prevPage.UseVisualStyleBackColor = true;
+            this.prevPage.Click += new System.EventHandler(this.prevPage_Click);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1013, 610);
+            this.ClientSize = new System.Drawing.Size(1094, 635);
+            this.Controls.Add(this.prevPage);
+            this.Controls.Add(this.nextPage);
+            this.Controls.Add(this.comboRows);
             this.Controls.Add(this.clientsView);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdminForm";
@@ -59,6 +94,9 @@ namespace Clients
         #endregion
 
         private System.Windows.Forms.DataGridView clientsView;
+        private System.Windows.Forms.ComboBox comboRows;
+        private System.Windows.Forms.Button nextPage;
+        private System.Windows.Forms.Button prevPage;
     }
 }
 
