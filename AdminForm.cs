@@ -21,6 +21,8 @@ namespace Clients
             InitializeComponent();
             ShowTable("SELECT * FROM Client WHERE ID BETWEEN " + id + " AND " + idplus);
             AddItems();
+            rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client");
+            maxRowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client");
         }
         void ShowTable(string sql)
         {
@@ -32,6 +34,18 @@ namespace Clients
                 adapter.Fill(ds);
                 clientsView.DataSource = ds.Tables[0];
                 connection.Close();
+            }
+        }
+        string SelectMaxID(string sql)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+                int reader = (int)command.ExecuteScalar();
+                string maxId = reader.ToString();
+                connection.Close();
+                return maxId.ToString();
             }
         }
         void AddItems()
@@ -75,6 +89,96 @@ namespace Clients
             id = id + 22;
             idplus = idplus + 22;
             ShowTable("SELECT * FROM Client WHERE ID BETWEEN " + id + " AND " + idplus);
+        }
+
+        private void nameSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (nameSearch.Text != "")
+            {
+                ShowTable("SELECT * FROM Client WHERE FirstName LIKE '" + nameSearch.Text + "%'");
+                prevPage.Enabled = false;
+                nextPage.Enabled = false;
+                rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client WHERE FirstName LIKE '" + nameSearch.Text + "%'");
+            }
+            else
+            {
+                ShowTable("SELECT * FROM Client");
+                prevPage.Enabled = true;
+                nextPage.Enabled = true;
+                rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client");
+            }
+        }
+
+        private void lastNameSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (lastNameSearch.Text != "")
+            {
+                ShowTable("SELECT * FROM Client WHERE LastName LIKE '" + lastNameSearch.Text + "%'");
+                prevPage.Enabled = false;
+                nextPage.Enabled = false;
+                rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client WHERE Lastname LIKE '" + lastNameSearch.Text + "%'");
+            }
+            else
+            {
+                ShowTable("SELECT * FROM Client");
+                prevPage.Enabled = true;
+                nextPage.Enabled = true;
+                rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client");
+            }
+        }
+
+        private void patronymicSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (patronymicSearch.Text != "")
+            {
+                ShowTable("SELECT * FROM Client WHERE Patronymic LIKE '" + patronymicSearch.Text + "%'");
+                prevPage.Enabled = false;
+                nextPage.Enabled = false;
+                rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client WHERE Patronymic LIKE '" + patronymicSearch.Text + "%'");
+            }
+            else
+            {
+                ShowTable("SELECT * FROM Client");
+                prevPage.Enabled = true;
+                nextPage.Enabled = true;
+                rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client");
+            }
+        }
+
+        private void emailSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (emailSearch.Text != "")
+            {
+                ShowTable("SELECT * FROM Client WHERE Email LIKE '" + emailSearch.Text + "%'");
+                prevPage.Enabled = false;
+                nextPage.Enabled = false;
+                rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client WHERE Email LIKE '" + emailSearch.Text + "%'");
+            }
+            else
+            {
+                ShowTable("SELECT * FROM Client");
+                prevPage.Enabled = true;
+                nextPage.Enabled = true;
+                rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client");
+            }
+        }
+
+        private void phoneSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (phoneSearch.Text != "")
+            {
+                ShowTable("SELECT * FROM Client WHERE Phone LIKE '" + phoneSearch.Text + "%'");
+                prevPage.Enabled = false;
+                nextPage.Enabled = false;
+                rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client WHERE Phone LIKE '" + phoneSearch.Text + "%'");
+            }
+            else
+            {
+                ShowTable("SELECT * FROM Client");
+                prevPage.Enabled = true;
+                nextPage.Enabled = true;
+                rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client");
+            }
         }
     }
 }
