@@ -1,7 +1,7 @@
 ﻿
 namespace Clients
 {
-    partial class AdminForm
+    partial class Form1
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -29,7 +29,7 @@ namespace Clients
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.clientsView = new System.Windows.Forms.DataGridView();
             this.comboRows = new System.Windows.Forms.ComboBox();
             this.nextPage = new System.Windows.Forms.Button();
@@ -209,7 +209,7 @@ namespace Clients
             this.maxRowsCount.TabIndex = 17;
             this.maxRowsCount.Text = "?";
             // 
-            // AdminForm
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -233,8 +233,8 @@ namespace Clients
             this.Controls.Add(this.comboRows);
             this.Controls.Add(this.clientsView);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "AdminForm";
-            this.Text = "Form1";
+            this.Name = "Form1";
+            this.Text = "Mordochka";
             ((System.ComponentModel.ISupportInitialize)(this.clientsView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
