@@ -16,12 +16,18 @@ namespace Clients
         public string connectionString = "Data Source=10.10.1.24;Initial Catalog=UPF;Persist Security Info=True;User ID=pro-41;Password=Pro_41student";
         public int id = 102;
         public int idplus = 123;
+        int sdoffset = 10;
+        int sdfetch = 0;
+        
         public Form1()
         {
             InitializeComponent();
             ShowTable("SELECT * FROM Client WHERE ID BETWEEN " + id + " AND " + idplus);
             AddItems();
-            rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client");
+            comboRows.SelectedItem = "Все записи";
+            RowsCount();
+            nextPage.Enabled = false;
+            prevPage.Enabled = false;
             maxRowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client");
         }
         void ShowTable(string sql) // метод для отображения таблицы
@@ -48,13 +54,42 @@ namespace Clients
                 return maxId.ToString();
             }
         }
-        void AddItems()
+        void RowsCount() // метод для подсчета строк в dataGridView
+        {
+            int rows = clientsView.Rows.Count;
+            rows = rows - 1;
+            rowsCount.Text = rows.ToString();
+        }
+        void AddItems() // метод для добавления вариантов в comboBox
         {
             comboRows.Items.Add("10 записей");
             comboRows.Items.Add("50 записей");
             comboRows.Items.Add("200 записей");
             comboRows.Items.Add("Все записи");
         }
+        void SelectBy(string sql)
+        {
+            ShowTable(sql);
+            RowsCount();
+        }
+        void SelectDigit(int offset, int fetch)
+        {
+            ShowTable("SELECT * FROM Client ORDER BY ID OFFSET " + offset.ToString() + " ROWS FETCH NEXT " + fetch.ToString() + " ROWS ONLY");
+        }
+        void PaginationPlus(int offsetop, int sdfetchop)
+        {
+            sdoffset = sdoffset + offsetop;
+            sdfetch = sdfetchop;
+            SelectDigit(sdoffset, sdfetch);
+        }
+
+        void PaginationMinus(int offsetop, int sdfetchop)
+        {
+            sdoffset = sdoffset - offsetop;
+            sdfetch = sdfetchop;
+            SelectDigit(sdoffset, sdfetch);
+        }
+
         void DBSearch(string text, string column) // метод для поиска по бд
         {
             if (text != "")
@@ -62,50 +97,78 @@ namespace Clients
                 ShowTable("SELECT * FROM Client WHERE " + column + " LIKE '" + text + "%'");
                 prevPage.Enabled = false;
                 nextPage.Enabled = false;
-                rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client WHERE " + column + " LIKE '" + text + "%'");
+                //rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client WHERE " + column + " LIKE '" + text + "%'");
+                RowsCount();
             }
             else
             {
                 ShowTable("SELECT * FROM Client");
                 prevPage.Enabled = true;
                 nextPage.Enabled = true;
-                rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client");
+                //rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client");
+                RowsCount();
             }
         }
 
-        private void comboRows_SelectedIndexChanged(object sender, EventArgs e)
+        public void comboRows_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedState = comboRows.SelectedItem.ToString();
             if (selectedState == "10 записей")
             {
-                ShowTable("SELECT TOP (10) * FROM Client");
+                SelectBy("SELECT TOP (10) * FROM Client");
+                prevPage.Enabled = true;
+                nextPage.Enabled = true;
             }
             if (selectedState == "50 записей")
             {
-                ShowTable("SELECT TOP (50) * FROM Client");
+                SelectBy("SELECT TOP (50) * FROM Client");
+                prevPage.Enabled = true;
+                nextPage.Enabled = true;
             }
             if (selectedState == "200 записей")
             {
-                ShowTable("SELECT TOP (200) * FROM Client");
+                SelectBy("SELECT TOP (200) * FROM Client");
+                prevPage.Enabled = true;
+                nextPage.Enabled = true;
             }
             if (selectedState == "Все записи")
             {
-                ShowTable("SELECT * FROM Client");
+                SelectBy("SELECT * FROM Client");
+                nextPage.Enabled = false;
+                prevPage.Enabled = false;
             }
         }
 
         private void prevPage_Click(object sender, EventArgs e)
         {
-            id = id - 22;
-            idplus = idplus - 22;
-            ShowTable("SELECT * FROM Client WHERE ID BETWEEN " + id + " AND " + idplus);
+            if (comboRows.SelectedItem == "10 записей")
+            {
+                PaginationMinus(10, 10);
+            }
+            if (comboRows.SelectedItem == "50 записей")
+            {
+                PaginationMinus(50, 50);
+            }
+            if (comboRows.SelectedItem == "200 записей")
+            {
+                PaginationMinus(200, 200);
+            }
         }
 
         private void nextPage_Click(object sender, EventArgs e)
         {
-            id = id + 22;
-            idplus = idplus + 22;
-            ShowTable("SELECT * FROM Client WHERE ID BETWEEN " + id + " AND " + idplus);
+            if (comboRows.SelectedItem=="10 записей")
+            {
+                PaginationPlus(10, 10);
+            }
+            if (comboRows.SelectedItem == "50 записей")
+            {
+                PaginationPlus(50, 50);
+            }
+            if (comboRows.SelectedItem == "200 записей")
+            {
+                PaginationPlus(200, 200);
+            }
         }
 
         private void nameSearch_TextChanged(object sender, EventArgs e)
@@ -131,6 +194,10 @@ namespace Clients
         private void phoneSearch_TextChanged(object sender, EventArgs e)
         {
             DBSearch(phoneSearch.Text, "Phone");
+        }
+
+        private void lastNameSort_Click(object sender, EventArgs e)
+        {
         }
     }
 }

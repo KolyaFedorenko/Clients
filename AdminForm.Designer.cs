@@ -48,7 +48,12 @@ namespace Clients
             this.rowsCount = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.maxRowsCount = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lastNameSort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.clientsView)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // clientsView
@@ -91,7 +96,7 @@ namespace Clients
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(951, 57);
+            this.label1.Location = new System.Drawing.Point(65, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 13);
             this.label1.TabIndex = 4;
@@ -99,7 +104,7 @@ namespace Clients
             // 
             // nameSearch
             // 
-            this.nameSearch.Location = new System.Drawing.Point(902, 73);
+            this.nameSearch.Location = new System.Drawing.Point(16, 76);
             this.nameSearch.Name = "nameSearch";
             this.nameSearch.Size = new System.Drawing.Size(180, 20);
             this.nameSearch.TabIndex = 5;
@@ -108,7 +113,7 @@ namespace Clients
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(951, 9);
+            this.label2.Location = new System.Drawing.Point(60, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 13);
             this.label2.TabIndex = 6;
@@ -116,7 +121,7 @@ namespace Clients
             // 
             // lastNameSearch
             // 
-            this.lastNameSearch.Location = new System.Drawing.Point(902, 25);
+            this.lastNameSearch.Location = new System.Drawing.Point(16, 28);
             this.lastNameSearch.Name = "lastNameSearch";
             this.lastNameSearch.Size = new System.Drawing.Size(180, 20);
             this.lastNameSearch.TabIndex = 7;
@@ -125,7 +130,7 @@ namespace Clients
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(951, 107);
+            this.label3.Location = new System.Drawing.Point(65, 110);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 13);
             this.label3.TabIndex = 8;
@@ -133,7 +138,7 @@ namespace Clients
             // 
             // patronymicSearch
             // 
-            this.patronymicSearch.Location = new System.Drawing.Point(902, 123);
+            this.patronymicSearch.Location = new System.Drawing.Point(16, 126);
             this.patronymicSearch.Name = "patronymicSearch";
             this.patronymicSearch.Size = new System.Drawing.Size(180, 20);
             this.patronymicSearch.TabIndex = 9;
@@ -142,7 +147,7 @@ namespace Clients
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(951, 174);
+            this.label5.Location = new System.Drawing.Point(73, 159);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 13);
             this.label5.TabIndex = 10;
@@ -150,7 +155,7 @@ namespace Clients
             // 
             // emailSearch
             // 
-            this.emailSearch.Location = new System.Drawing.Point(902, 190);
+            this.emailSearch.Location = new System.Drawing.Point(16, 175);
             this.emailSearch.Name = "emailSearch";
             this.emailSearch.Size = new System.Drawing.Size(180, 20);
             this.emailSearch.TabIndex = 11;
@@ -159,7 +164,7 @@ namespace Clients
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(925, 223);
+            this.label4.Location = new System.Drawing.Point(38, 208);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(146, 13);
             this.label4.TabIndex = 12;
@@ -167,7 +172,7 @@ namespace Clients
             // 
             // phoneSearch
             // 
-            this.phoneSearch.Location = new System.Drawing.Point(902, 239);
+            this.phoneSearch.Location = new System.Drawing.Point(16, 224);
             this.phoneSearch.Name = "phoneSearch";
             this.phoneSearch.Size = new System.Drawing.Size(180, 20);
             this.phoneSearch.TabIndex = 13;
@@ -209,25 +214,56 @@ namespace Clients
             this.maxRowsCount.TabIndex = 17;
             this.maxRowsCount.Text = "?";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lastNameSearch);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.nameSearch);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.patronymicSearch);
+            this.groupBox1.Controls.Add(this.phoneSearch);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.emailSearch);
+            this.groupBox1.Location = new System.Drawing.Point(891, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(208, 261);
+            this.groupBox1.TabIndex = 19;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Поиск";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lastNameSort);
+            this.groupBox2.Location = new System.Drawing.Point(891, 267);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(208, 256);
+            this.groupBox2.TabIndex = 20;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Сортировка";
+            // 
+            // lastNameSort
+            // 
+            this.lastNameSort.Location = new System.Drawing.Point(6, 19);
+            this.lastNameSort.Name = "lastNameSort";
+            this.lastNameSort.Size = new System.Drawing.Size(190, 43);
+            this.lastNameSort.TabIndex = 21;
+            this.lastNameSort.Text = "По фамилии";
+            this.lastNameSort.UseVisualStyleBackColor = true;
+            this.lastNameSort.Click += new System.EventHandler(this.lastNameSort_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1094, 635);
+            this.ClientSize = new System.Drawing.Size(1116, 655);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.maxRowsCount);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.rowsCount);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.phoneSearch);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.emailSearch);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.patronymicSearch);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.lastNameSearch);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.nameSearch);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.prevPage);
             this.Controls.Add(this.nextPage);
             this.Controls.Add(this.comboRows);
@@ -236,6 +272,9 @@ namespace Clients
             this.Name = "Form1";
             this.Text = "Mordochka";
             ((System.ComponentModel.ISupportInitialize)(this.clientsView)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,6 +300,9 @@ namespace Clients
         private System.Windows.Forms.Label rowsCount;
         private System.Windows.Forms.Label label8;
         public System.Windows.Forms.Label maxRowsCount;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button lastNameSort;
     }
 }
 
