@@ -14,15 +14,13 @@ namespace Clients
     public partial class Form1 : Form
     {
         public string connectionString = "Data Source=10.10.1.24;Initial Catalog=UPF;Persist Security Info=True;User ID=pro-41;Password=Pro_41student";
-        public int id = 102;
-        public int idplus = 123;
         int sdoffset = 10;
         int sdfetch = 0;
         
         public Form1()
         {
             InitializeComponent();
-            ShowTable("SELECT * FROM Client WHERE ID BETWEEN " + id + " AND " + idplus);
+            ShowTable("SELECT * FROM Client");
             AddItems();
             comboRows.SelectedItem = "Все записи";
             RowsCount();
@@ -198,6 +196,34 @@ namespace Clients
 
         private void lastNameSort_Click(object sender, EventArgs e)
         {
+            ShowTable("SELECT * FROM Client ORDER BY Lastname");
+            RowsCount();
+        }
+
+        private void maleFilter_Click(object sender, EventArgs e)
+        {
+            ShowTable("SELECT * FROM Client WHERE GenderCode = 'м'");
+            RowsCount();
+        }
+
+        private void femaleFilter_Click(object sender, EventArgs e)
+        {
+            ShowTable("SELECT * FROM Client WHERE GenderCode = 'ж'");
+            RowsCount();
+        }
+
+        private void resetFilter_Click(object sender, EventArgs e)
+        {
+            ShowTable("SELECT * FROM Client");
+            RowsCount();
+        }
+
+        private void addClient_Click(object sender, EventArgs e)
+        {
+            AddClientForm clientform = new AddClientForm();
+            clientform.label1.Visible = false;
+            clientform.idBox.Visible = false;
+            clientform.Show();
         }
     }
 }
