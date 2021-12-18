@@ -104,8 +104,7 @@ namespace Clients
             {
                 ShowTable("SELECT * FROM Client WHERE " + column + " LIKE '" + text + "%'");
                 prevPage.Enabled = false;
-                nextPage.Enabled = false;
-                //rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client WHERE " + column + " LIKE '" + text + "%'");
+                nextPage.Enabled = false;;
                 RowsCount();
             }
             else
@@ -113,7 +112,6 @@ namespace Clients
                 ShowTable("SELECT * FROM Client");
                 prevPage.Enabled = true;
                 nextPage.Enabled = true;
-                //rowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client");
                 RowsCount();
             }
         }
