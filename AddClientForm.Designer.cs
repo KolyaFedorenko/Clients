@@ -229,22 +229,22 @@ namespace Clients
         }
 
         #endregion
-        private System.Windows.Forms.TextBox firstnameBox;
-        private System.Windows.Forms.TextBox lastnameBox;
-        private System.Windows.Forms.TextBox patronymicBox;
-        private System.Windows.Forms.TextBox emailBox;
-        private System.Windows.Forms.TextBox phoneBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox genderBox;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.DateTimePicker birthdayPicker;
         public System.Windows.Forms.TextBox idBox;
         public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.TextBox firstnameBox;
+        public System.Windows.Forms.TextBox lastnameBox;
+        public System.Windows.Forms.TextBox patronymicBox;
+        public System.Windows.Forms.TextBox emailBox;
+        public System.Windows.Forms.TextBox phoneBox;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.ComboBox genderBox;
+        public System.Windows.Forms.Label label8;
+        public System.Windows.Forms.Button saveButton;
+        public System.Windows.Forms.DateTimePicker birthdayPicker;
     }
 }

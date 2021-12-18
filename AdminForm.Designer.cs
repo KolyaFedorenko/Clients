@@ -50,18 +50,21 @@ namespace Clients
             this.maxRowsCount = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lastNameSort = new System.Windows.Forms.Button();
-            this.lastVisitSort = new System.Windows.Forms.Button();
             this.countVisitSort = new System.Windows.Forms.Button();
+            this.lastVisitSort = new System.Windows.Forms.Button();
+            this.lastNameSort = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.maleFilter = new System.Windows.Forms.Button();
-            this.femaleFilter = new System.Windows.Forms.Button();
             this.resetFilter = new System.Windows.Forms.Button();
+            this.femaleFilter = new System.Windows.Forms.Button();
+            this.maleFilter = new System.Windows.Forms.Button();
             this.addClient = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.editClient = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.clientsView)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // clientsView
@@ -253,15 +256,14 @@ namespace Clients
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Сортировка";
             // 
-            // lastNameSort
+            // countVisitSort
             // 
-            this.lastNameSort.Location = new System.Drawing.Point(6, 19);
-            this.lastNameSort.Name = "lastNameSort";
-            this.lastNameSort.Size = new System.Drawing.Size(190, 43);
-            this.lastNameSort.TabIndex = 21;
-            this.lastNameSort.Text = "По фамилии";
-            this.lastNameSort.UseVisualStyleBackColor = true;
-            this.lastNameSort.Click += new System.EventHandler(this.lastNameSort_Click);
+            this.countVisitSort.Location = new System.Drawing.Point(6, 117);
+            this.countVisitSort.Name = "countVisitSort";
+            this.countVisitSort.Size = new System.Drawing.Size(190, 43);
+            this.countVisitSort.TabIndex = 23;
+            this.countVisitSort.Text = "По количеству посещений";
+            this.countVisitSort.UseVisualStyleBackColor = true;
             // 
             // lastVisitSort
             // 
@@ -272,14 +274,15 @@ namespace Clients
             this.lastVisitSort.Text = "По дате последнего посещения";
             this.lastVisitSort.UseVisualStyleBackColor = true;
             // 
-            // countVisitSort
+            // lastNameSort
             // 
-            this.countVisitSort.Location = new System.Drawing.Point(6, 117);
-            this.countVisitSort.Name = "countVisitSort";
-            this.countVisitSort.Size = new System.Drawing.Size(190, 43);
-            this.countVisitSort.TabIndex = 23;
-            this.countVisitSort.Text = "По количеству посещений";
-            this.countVisitSort.UseVisualStyleBackColor = true;
+            this.lastNameSort.Location = new System.Drawing.Point(6, 19);
+            this.lastNameSort.Name = "lastNameSort";
+            this.lastNameSort.Size = new System.Drawing.Size(190, 43);
+            this.lastNameSort.TabIndex = 21;
+            this.lastNameSort.Text = "По фамилии";
+            this.lastNameSort.UseVisualStyleBackColor = true;
+            this.lastNameSort.Click += new System.EventHandler(this.lastNameSort_Click);
             // 
             // groupBox3
             // 
@@ -293,15 +296,15 @@ namespace Clients
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Фильтрация по полу";
             // 
-            // maleFilter
+            // resetFilter
             // 
-            this.maleFilter.Location = new System.Drawing.Point(6, 19);
-            this.maleFilter.Name = "maleFilter";
-            this.maleFilter.Size = new System.Drawing.Size(63, 53);
-            this.maleFilter.TabIndex = 24;
-            this.maleFilter.Text = "М";
-            this.maleFilter.UseVisualStyleBackColor = true;
-            this.maleFilter.Click += new System.EventHandler(this.maleFilter_Click);
+            this.resetFilter.Location = new System.Drawing.Point(141, 19);
+            this.resetFilter.Name = "resetFilter";
+            this.resetFilter.Size = new System.Drawing.Size(63, 53);
+            this.resetFilter.TabIndex = 26;
+            this.resetFilter.Text = "Все";
+            this.resetFilter.UseVisualStyleBackColor = true;
+            this.resetFilter.Click += new System.EventHandler(this.resetFilter_Click);
             // 
             // femaleFilter
             // 
@@ -313,32 +316,53 @@ namespace Clients
             this.femaleFilter.UseVisualStyleBackColor = true;
             this.femaleFilter.Click += new System.EventHandler(this.femaleFilter_Click);
             // 
-            // resetFilter
+            // maleFilter
             // 
-            this.resetFilter.Location = new System.Drawing.Point(141, 19);
-            this.resetFilter.Name = "resetFilter";
-            this.resetFilter.Size = new System.Drawing.Size(63, 53);
-            this.resetFilter.TabIndex = 26;
-            this.resetFilter.Text = "Все";
-            this.resetFilter.UseVisualStyleBackColor = true;
-            this.resetFilter.Click += new System.EventHandler(this.resetFilter_Click);
+            this.maleFilter.Location = new System.Drawing.Point(6, 19);
+            this.maleFilter.Name = "maleFilter";
+            this.maleFilter.Size = new System.Drawing.Size(63, 53);
+            this.maleFilter.TabIndex = 24;
+            this.maleFilter.Text = "М";
+            this.maleFilter.UseVisualStyleBackColor = true;
+            this.maleFilter.Click += new System.EventHandler(this.maleFilter_Click);
             // 
             // addClient
             // 
-            this.addClient.Location = new System.Drawing.Point(944, 559);
+            this.addClient.Location = new System.Drawing.Point(6, 19);
             this.addClient.Name = "addClient";
-            this.addClient.Size = new System.Drawing.Size(155, 37);
+            this.addClient.Size = new System.Drawing.Size(198, 37);
             this.addClient.TabIndex = 22;
-            this.addClient.Text = "Добавить клиента";
+            this.addClient.Text = "Добавить";
             this.addClient.UseVisualStyleBackColor = true;
             this.addClient.Click += new System.EventHandler(this.addClient_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.editClient);
+            this.groupBox4.Controls.Add(this.addClient);
+            this.groupBox4.Location = new System.Drawing.Point(891, 529);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(210, 106);
+            this.groupBox4.TabIndex = 23;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Действия с клиентами";
+            // 
+            // editClient
+            // 
+            this.editClient.Location = new System.Drawing.Point(6, 62);
+            this.editClient.Name = "editClient";
+            this.editClient.Size = new System.Drawing.Size(104, 37);
+            this.editClient.TabIndex = 23;
+            this.editClient.Text = "Редактировать";
+            this.editClient.UseVisualStyleBackColor = true;
+            this.editClient.Click += new System.EventHandler(this.editClient_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1113, 635);
-            this.Controls.Add(this.addClient);
+            this.ClientSize = new System.Drawing.Size(1118, 647);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -358,6 +382,7 @@ namespace Clients
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -393,6 +418,8 @@ namespace Clients
         private System.Windows.Forms.Button femaleFilter;
         private System.Windows.Forms.Button maleFilter;
         private System.Windows.Forms.Button addClient;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button editClient;
     }
 }
 

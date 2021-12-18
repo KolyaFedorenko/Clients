@@ -16,7 +16,7 @@ namespace Clients
         public string connectionString = "Data Source=10.10.1.24;Initial Catalog=UPF;Persist Security Info=True;User ID=pro-41;Password=Pro_41student";
         int sdoffset = 10;
         int sdfetch = 0;
-        
+        AddClientForm clientform = new AddClientForm();
         public Form1()
         {
             InitializeComponent();
@@ -30,15 +30,23 @@ namespace Clients
         }
         void ShowTable(string sql) // метод для отображения таблицы
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                SqlDataAdapter adapter = new SqlDataAdapter(sql, connection);
-                DataSet ds = new DataSet();
-                adapter.Fill(ds);
-                clientsView.DataSource = ds.Tables[0];
-                connection.Close();
+            try
+            { 
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(sql, connection);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    clientsView.DataSource = ds.Tables[0];
+                    connection.Close();
+                }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Возникла ошибка");
+            }
+
         }
         string SelectMaxID(string sql) // метод для получения количества записей в бд
         {
@@ -220,9 +228,29 @@ namespace Clients
 
         private void addClient_Click(object sender, EventArgs e)
         {
-            AddClientForm clientform = new AddClientForm();
+            clientform = new AddClientForm();
+            clientform.options = "add";
             clientform.label1.Visible = false;
             clientform.idBox.Visible = false;
+            clientform.Show();
+        }
+
+        private void editClient_Click(object sender, EventArgs e)
+        {
+            clientform = new AddClientForm();
+            int rowindex = clientsView.CurrentCell.RowIndex;
+            clientform.idBox.Text = clientsView.Rows[rowindex].Cells[0].Value.ToString();
+            clientform.idBox.Enabled = false;
+            clientform.firstnameBox.Text = clientsView.Rows[rowindex].Cells[1].Value.ToString();
+            clientform.lastnameBox.Text = clientsView.Rows[rowindex].Cells[2].Value.ToString();
+            clientform.patronymicBox.Text = clientsView.Rows[rowindex].Cells[3].Value.ToString();
+            string date = clientsView.Rows[rowindex].Cells[4].Value.ToString();
+            var parcedDate = DateTime.Parse(date);
+            clientform.birthdayPicker.Value = parcedDate;
+            clientform.emailBox.Text = clientsView.Rows[rowindex].Cells[6].Value.ToString();
+            clientform.phoneBox.Text = clientsView.Rows[rowindex].Cells[7].Value.ToString();
+            clientform.genderBox.SelectedItem = clientsView.Rows[rowindex].Cells[8].Value.ToString();
+            clientform.options = "edit";
             clientform.Show();
         }
     }

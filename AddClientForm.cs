@@ -19,6 +19,7 @@ namespace Clients
         public string gender;
         bool rightEmail;
         bool rightPhone;
+        public string options;
         string checkFIO(string textbox)
         {
             if (Regex.IsMatch(textbox, @"[1\\2\\3\\4\\5\\6\\7\\8\\9\\0\\!\#\$\%\^\&\*\(\)\}\{\,\.\,\/\\?\'\+\=\:\;\№@]"))
@@ -35,8 +36,19 @@ namespace Clients
         public AddClientForm()
         {
             InitializeComponent();
-            genderBox.Items.Add("М");
-            genderBox.Items.Add("Ж");
+            genderBox.Items.Add("м");
+            genderBox.Items.Add("ж");
+        }
+
+        void SqlQuery(string sql)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
 
         private void firstnameBox_TextChanged(object sender, EventArgs e)
@@ -91,29 +103,37 @@ namespace Clients
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (rightPhone == true && rightEmail == true)
+            if (options == "add")
+            {
+                if (rightPhone == true && rightEmail == true)
+                {
+                    try
+                    {
+                        SqlQuery("INSERT INTO Client (FirstName, LastName, Patronymic, Birthday, RegistrationDate, Email, Phone, GenderCode) VALUES ('" + firstnameBox.Text + "', '" + lastnameBox.Text + "', '" + patronymicBox.Text + "', '" + date + "', '" + DateTime.Today.ToString() + "', '" + emailBox.Text + "', '" + phoneBox.Text + "', '" + gender + "')");
+                        MessageBox.Show("Регистрация прошла успешно");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Возникла ошибка при регистрации, проверьте заполнение всех полей");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Вы ввели неверный телефон или почту");
+                }
+            }
+            if (options == "edit")
             {
                 try
                 {
-                    using (SqlConnection connection = new SqlConnection(connectionString))
-                    {
-                        string sql = "INSERT INTO Client (FirstName, LastName, Patronymic, Birthday, RegistrationDate, Email, Phone, GenderCode) VALUES ('" + firstnameBox.Text + "', '" + lastnameBox.Text + "', '" + patronymicBox.Text + "', '" + date + "', '" + DateTime.Today.ToString() + "', '" + emailBox.Text + "', '" + phoneBox.Text + "', '" + gender + "')";
-                        connection.Open();
-                        SqlCommand command = new SqlCommand(sql, connection);
-                        command.ExecuteNonQuery();
-                        connection.Close();
-                        MessageBox.Show("Регистрация прошла успешно");
-                    }
+                    SqlQuery("UPDATE Client SET FirstName='" + firstnameBox.Text + "', LastName='" + lastnameBox.Text + "', Patronymic='" + patronymicBox.Text + "', Birthday='" + birthdayPicker.Value.ToString("yyyy-MM-dd") + "', Email='" + emailBox.Text + "', GenderCode='" + genderBox.SelectedItem.ToString() + "' WHERE ID='" + idBox.Text + "'");
+                    MessageBox.Show("Данные были успешно обновлены");
                 }
                 catch
                 {
-                    MessageBox.Show("Возникла ошибка при регистрации, проверьте заполнение всех полей");
+                    MessageBox.Show("Возникла ошибка при редактировании");
                 }
-
-            }
-            else
-            {
-                MessageBox.Show("Вы ввели неверный телефон или почту");
             }
         }
     }
