@@ -149,18 +149,18 @@ namespace Clients
 
         private void prevPage_Click(object sender, EventArgs e)
         {
-            if (comboRows.SelectedItem == "10 записей")
-            {
-                PaginationMinus(10, 10);
-            }
-            if (comboRows.SelectedItem == "50 записей")
-            {
-                PaginationMinus(50, 50);
-            }
-            if (comboRows.SelectedItem == "200 записей")
-            {
-                PaginationMinus(200, 200);
-            }
+                if (comboRows.SelectedItem == "10 записей")
+                {
+                    PaginationMinus(10, 10);
+                }
+                if (comboRows.SelectedItem == "50 записей")
+                {
+                    PaginationMinus(50, 50);
+                }
+                if (comboRows.SelectedItem == "200 записей")
+                {
+                    PaginationMinus(200, 200);
+                }
         }
 
         private void nextPage_Click(object sender, EventArgs e)
@@ -212,20 +212,78 @@ namespace Clients
 
         private void maleFilter_Click(object sender, EventArgs e)
         {
-            ShowTable("SELECT * FROM Client WHERE GenderCode = 'м'");
-            RowsCount();
+            femaleFilter.Enabled = false;
+            if (comboRows.SelectedItem == "10 записей")
+            {
+                ShowTable("SELECT TOP(10) * FROM Client WHERE GenderCode = 'м'");
+                RowsCount();
+            }
+            if (comboRows.SelectedItem == "50 записей")
+            {
+                ShowTable("SELECT TOP(50) * FROM Client WHERE GenderCode = 'м'");
+                RowsCount();
+            }
+            if (comboRows.SelectedItem == "200 записей")
+            {
+                ShowTable("SELECT TOP(200) * FROM Client WHERE GenderCode = 'м'");
+                RowsCount();
+            }
+            if (comboRows.SelectedItem == "Все записи")
+            {
+                ShowTable("SELECT TOP(10) * FROM Client WHERE GenderCode = 'м'");
+                RowsCount();
+            }
         }
 
         private void femaleFilter_Click(object sender, EventArgs e)
         {
-            ShowTable("SELECT * FROM Client WHERE GenderCode = 'ж'");
-            RowsCount();
+            maleFilter.Enabled = false;
+            if (comboRows.SelectedItem == "10 записей")
+            {
+                ShowTable("SELECT TOP(10) * FROM Client WHERE GenderCode = 'ж'");
+                RowsCount();
+            }
+            if (comboRows.SelectedItem == "50 записей")
+            {
+                ShowTable("SELECT TOP(50) * FROM Client WHERE GenderCode = 'ж'");
+                RowsCount();
+            }
+            if (comboRows.SelectedItem == "200 записей")
+            {
+                ShowTable("SELECT TOP(200) * FROM Client WHERE GenderCode = 'ж'");
+                RowsCount();
+            }
+            if (comboRows.SelectedItem == "Все записи")
+            {
+                ShowTable("SELECT TOP(10) * FROM Client WHERE GenderCode = 'ж'");
+                RowsCount();
+            }
         }
 
         private void resetFilter_Click(object sender, EventArgs e)
         {
-            ShowTable("SELECT * FROM Client");
-            RowsCount();
+            femaleFilter.Enabled = true;
+            maleFilter.Enabled = true;
+            if (comboRows.SelectedItem == "10 записей")
+            {
+                ShowTable("SELECT TOP(10) * FROM Client");
+                RowsCount();
+            }
+            if (comboRows.SelectedItem == "50 записей")
+            {
+                ShowTable("SELECT TOP(50) * FROM Client");
+                RowsCount();
+            }
+            if (comboRows.SelectedItem == "200 записей")
+            {
+                ShowTable("SELECT TOP(200) * FROM Client");
+                RowsCount();
+            }
+            if (comboRows.SelectedItem == "Все записи")
+            {
+                ShowTable("SELECT TOP(10) * FROM Client");
+                RowsCount();
+            }
         }
 
         private void addClient_Click(object sender, EventArgs e)
