@@ -59,6 +59,7 @@ namespace Clients
             this.maleFilter = new System.Windows.Forms.Button();
             this.addClient = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.deleteClient = new System.Windows.Forms.Button();
             this.editClient = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.clientsView)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -338,6 +339,7 @@ namespace Clients
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.deleteClient);
             this.groupBox4.Controls.Add(this.editClient);
             this.groupBox4.Controls.Add(this.addClient);
             this.groupBox4.Location = new System.Drawing.Point(891, 529);
@@ -347,11 +349,21 @@ namespace Clients
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Действия с клиентами";
             // 
+            // deleteClient
+            // 
+            this.deleteClient.Location = new System.Drawing.Point(110, 62);
+            this.deleteClient.Name = "deleteClient";
+            this.deleteClient.Size = new System.Drawing.Size(94, 37);
+            this.deleteClient.TabIndex = 24;
+            this.deleteClient.Text = "Удалить";
+            this.deleteClient.UseVisualStyleBackColor = true;
+            this.deleteClient.Click += new System.EventHandler(this.deleteClient_Click);
+            // 
             // editClient
             // 
             this.editClient.Location = new System.Drawing.Point(6, 62);
             this.editClient.Name = "editClient";
-            this.editClient.Size = new System.Drawing.Size(104, 37);
+            this.editClient.Size = new System.Drawing.Size(94, 37);
             this.editClient.TabIndex = 23;
             this.editClient.Text = "Редактировать";
             this.editClient.UseVisualStyleBackColor = true;
@@ -420,6 +432,7 @@ namespace Clients
         private System.Windows.Forms.Button addClient;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button editClient;
+        private System.Windows.Forms.Button deleteClient;
     }
 }
 

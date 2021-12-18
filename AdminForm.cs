@@ -253,6 +253,21 @@ namespace Clients
             clientform.options = "edit";
             clientform.Show();
         }
+
+        private void deleteClient_Click(object sender, EventArgs e)
+        {
+            int rowindex = clientsView.CurrentCell.RowIndex;
+            string id = clientsView.Rows[rowindex].Cells[0].Value.ToString();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string sql = "DELETE FROM Client WHERE ID='" + id + "'";
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+            ShowTable("SELECT * FROM Client");
+        }
     }
 }
     
