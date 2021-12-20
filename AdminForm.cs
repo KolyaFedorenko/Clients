@@ -175,6 +175,10 @@ namespace Clients
             {
                 PaginationPlus(200, 200);
             }
+            if (rowsCount.Text == "0")
+	        {
+                PaginationMinus(10, 10);
+	        }
         }
 
         private void nameSearch_TextChanged(object sender, EventArgs e)
