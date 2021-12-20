@@ -228,7 +228,7 @@ namespace Clients
             }
             if (comboRows.SelectedItem == "Все записи")
             {
-                ShowTable("SELECT TOP(10) * FROM Client WHERE GenderCode = 'м'");
+                ShowTable("SELECT * FROM Client WHERE GenderCode = 'м'");
                 RowsCount();
             }
         }
@@ -253,7 +253,7 @@ namespace Clients
             }
             if (comboRows.SelectedItem == "Все записи")
             {
-                ShowTable("SELECT TOP(10) * FROM Client WHERE GenderCode = 'ж'");
+                ShowTable("SELECT * FROM Client WHERE GenderCode = 'ж'");
                 RowsCount();
             }
         }
@@ -279,7 +279,7 @@ namespace Clients
             }
             if (comboRows.SelectedItem == "Все записи")
             {
-                ShowTable("SELECT TOP(10) * FROM Client");
+                ShowTable("SELECT * FROM Client");
                 RowsCount();
             }
         }
