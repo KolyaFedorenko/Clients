@@ -28,7 +28,7 @@ namespace Clients
             prevPage.Enabled = false;
             maxRowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client");
         }
-        void ShowTable(string sql) // метод для отображения таблицы
+        public void ShowTable(string sql) // метод для отображения таблицы
         {
             try
             { 
@@ -312,6 +312,8 @@ namespace Clients
             clientform.emailBox.Text = clientsView.Rows[rowindex].Cells[6].Value.ToString();
             clientform.phoneBox.Text = clientsView.Rows[rowindex].Cells[7].Value.ToString();
             clientform.genderBox.SelectedItem = clientsView.Rows[rowindex].Cells[8].Value.ToString();
+            clientform.userPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+            clientform.userPhoto.Image = Image.FromFile(@"C:\Users\is12332\Source\Repos\Clients4\Resources\" + clientsView.Rows[rowindex].Cells[9].Value.ToString());
             clientform.options = "edit";
             clientform.Show();
         }
@@ -333,6 +335,11 @@ namespace Clients
                 }
                 ShowTable("SELECT * FROM Client");
             }
+        }
+
+        private void clientVisits_Click(object sender, EventArgs e)
+        {
+            ShowTable("SELECT Client.ID, FirstName, LastName, Patronymic, COUNT(StartTime) as Visit, Birthday, RegistrationDate, Email, Phone, GenderCode FROM Client LEFT JOIN ClientService ON ClientService.ClientID = Client.ID Group by Client.ID, FirstName, LastName, Patronymic, Birthday, RegistrationDate, Email, Phone, GenderCode ORDER BY Visit DESC");
         }
     }
 }

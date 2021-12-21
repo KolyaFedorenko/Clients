@@ -21,7 +21,7 @@ namespace Clients
         bool rightEmail;
         bool rightPhone;
         public string options;
-        string path;
+        public string path;
         bool imageSelected = false;
         string checkFIO(string textbox)
         {
@@ -137,7 +137,7 @@ namespace Clients
             {
                 try
                 {
-                    SqlQuery("UPDATE Client SET FirstName='" + firstnameBox.Text + "', LastName='" + lastnameBox.Text + "', Patronymic='" + patronymicBox.Text + "', Birthday='" + birthdayPicker.Value.ToString("yyyy-MM-dd") + "', Email='" + emailBox.Text + "', GenderCode='" + genderBox.SelectedItem.ToString() + "' WHERE ID='" + idBox.Text + "'");
+                    SqlQuery("UPDATE Client SET FirstName='" + firstnameBox.Text + "', LastName='" + lastnameBox.Text + "', Patronymic='" + patronymicBox.Text + "', Birthday='" + birthdayPicker.Value.ToString("yyyy-MM-dd") + "', Email='" + emailBox.Text + "', GenderCode='" + genderBox.SelectedItem.ToString() + "', PhotoPath='Клиенты\\"+path+"' WHERE ID='" + idBox.Text + "'");
                     MessageBox.Show("Данные были успешно обновлены");
                 }
                 catch

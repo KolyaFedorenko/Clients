@@ -61,11 +61,18 @@ namespace Clients
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.deleteClient = new System.Windows.Forms.Button();
             this.editClient = new System.Windows.Forms.Button();
+            this.clientVisits = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.clientsView)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // clientsView
@@ -79,17 +86,17 @@ namespace Clients
             // comboRows
             // 
             this.comboRows.FormattingEnabled = true;
-            this.comboRows.Location = new System.Drawing.Point(290, 545);
+            this.comboRows.Location = new System.Drawing.Point(6, 19);
             this.comboRows.Name = "comboRows";
-            this.comboRows.Size = new System.Drawing.Size(151, 21);
+            this.comboRows.Size = new System.Drawing.Size(188, 21);
             this.comboRows.TabIndex = 1;
             this.comboRows.SelectedIndexChanged += new System.EventHandler(this.comboRows_SelectedIndexChanged);
             // 
             // nextPage
             // 
-            this.nextPage.Location = new System.Drawing.Point(149, 545);
+            this.nextPage.Location = new System.Drawing.Point(138, 19);
             this.nextPage.Name = "nextPage";
-            this.nextPage.Size = new System.Drawing.Size(121, 65);
+            this.nextPage.Size = new System.Drawing.Size(125, 74);
             this.nextPage.TabIndex = 2;
             this.nextPage.Text = "Следующая страница";
             this.nextPage.UseVisualStyleBackColor = true;
@@ -97,9 +104,9 @@ namespace Clients
             // 
             // prevPage
             // 
-            this.prevPage.Location = new System.Drawing.Point(12, 545);
+            this.prevPage.Location = new System.Drawing.Point(6, 19);
             this.prevPage.Name = "prevPage";
-            this.prevPage.Size = new System.Drawing.Size(121, 65);
+            this.prevPage.Size = new System.Drawing.Size(126, 75);
             this.prevPage.TabIndex = 3;
             this.prevPage.Text = "Предыдущая страница";
             this.prevPage.UseVisualStyleBackColor = true;
@@ -193,7 +200,7 @@ namespace Clients
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(287, 597);
+            this.label6.Location = new System.Drawing.Point(6, 56);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(108, 13);
             this.label6.TabIndex = 14;
@@ -202,7 +209,7 @@ namespace Clients
             // rowsCount
             // 
             this.rowsCount.AutoSize = true;
-            this.rowsCount.Location = new System.Drawing.Point(391, 597);
+            this.rowsCount.Location = new System.Drawing.Point(111, 56);
             this.rowsCount.Name = "rowsCount";
             this.rowsCount.Size = new System.Drawing.Size(13, 13);
             this.rowsCount.TabIndex = 15;
@@ -211,7 +218,7 @@ namespace Clients
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(422, 597);
+            this.label8.Location = new System.Drawing.Point(140, 56);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(19, 13);
             this.label8.TabIndex = 16;
@@ -220,7 +227,7 @@ namespace Clients
             // maxRowsCount
             // 
             this.maxRowsCount.AutoSize = true;
-            this.maxRowsCount.Location = new System.Drawing.Point(449, 597);
+            this.maxRowsCount.Location = new System.Drawing.Point(165, 56);
             this.maxRowsCount.Name = "maxRowsCount";
             this.maxRowsCount.Size = new System.Drawing.Size(13, 13);
             this.maxRowsCount.TabIndex = 17;
@@ -369,22 +376,63 @@ namespace Clients
             this.editClient.UseVisualStyleBackColor = true;
             this.editClient.Click += new System.EventHandler(this.editClient_Click);
             // 
+            // clientVisits
+            // 
+            this.clientVisits.Location = new System.Drawing.Point(6, 16);
+            this.clientVisits.Name = "clientVisits";
+            this.clientVisits.Size = new System.Drawing.Size(184, 83);
+            this.clientVisits.TabIndex = 24;
+            this.clientVisits.Text = "Посещения";
+            this.clientVisits.UseVisualStyleBackColor = true;
+            this.clientVisits.Click += new System.EventHandler(this.clientVisits_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.clientVisits);
+            this.groupBox5.Location = new System.Drawing.Point(689, 529);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(196, 106);
+            this.groupBox5.TabIndex = 25;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Посещения клиентов";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.prevPage);
+            this.groupBox6.Controls.Add(this.nextPage);
+            this.groupBox6.Location = new System.Drawing.Point(12, 535);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(269, 100);
+            this.groupBox6.TabIndex = 26;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Навигация";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.comboRows);
+            this.groupBox7.Controls.Add(this.label6);
+            this.groupBox7.Controls.Add(this.rowsCount);
+            this.groupBox7.Controls.Add(this.label8);
+            this.groupBox7.Controls.Add(this.maxRowsCount);
+            this.groupBox7.Location = new System.Drawing.Point(287, 535);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(200, 100);
+            this.groupBox7.TabIndex = 27;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Отображение записей";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1118, 647);
+            this.Controls.Add(this.groupBox7);
+            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.maxRowsCount);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.rowsCount);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.prevPage);
-            this.Controls.Add(this.nextPage);
-            this.Controls.Add(this.comboRows);
             this.Controls.Add(this.clientsView);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -395,8 +443,11 @@ namespace Clients
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -433,6 +484,10 @@ namespace Clients
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button editClient;
         private System.Windows.Forms.Button deleteClient;
+        private System.Windows.Forms.Button clientVisits;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox groupBox7;
     }
 }
 
