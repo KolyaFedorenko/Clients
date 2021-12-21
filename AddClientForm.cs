@@ -153,8 +153,11 @@ namespace Clients
             userPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
             if (ofd.ShowDialog(this) == DialogResult.OK)
                 userPhoto.Image = Image.FromFile(ofd.FileName);
+                File.Copy(ofd.FileName, Path.Combine(@"C:\Users\is12332\Source\Repos\Clients4\Resources\Клиенты\", Path.GetFileName(ofd.FileName)));
                 path = Path.GetFileName(ofd.FileName);
+                MessageBox.Show(path);
             imageSelected = true;
+            SaveFileDialog saveFile = new SaveFileDialog();
         }
     }
 }
