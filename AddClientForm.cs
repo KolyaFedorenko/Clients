@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Clients
 {
@@ -20,6 +21,8 @@ namespace Clients
         bool rightEmail;
         bool rightPhone;
         public string options;
+        string path;
+        bool imageSelected = false;
         string checkFIO(string textbox)
         {
             if (Regex.IsMatch(textbox, @"[1\\2\\3\\4\\5\\6\\7\\8\\9\\0\\!\#\$\%\^\&\*\(\)\}\{\,\.\,\/\\?\'\+\=\:\;\№@]"))
@@ -109,7 +112,14 @@ namespace Clients
                 {
                     try
                     {
-                        SqlQuery("INSERT INTO Client (FirstName, LastName, Patronymic, Birthday, RegistrationDate, Email, Phone, GenderCode) VALUES ('" + firstnameBox.Text + "', '" + lastnameBox.Text + "', '" + patronymicBox.Text + "', '" + date + "', '" + DateTime.Today.ToString() + "', '" + emailBox.Text + "', '" + phoneBox.Text + "', '" + gender + "')");
+                        if (imageSelected==false)
+                        {
+                            SqlQuery("INSERT INTO Client (FirstName, LastName, Patronymic, Birthday, RegistrationDate, Email, Phone, GenderCode) VALUES ('" + firstnameBox.Text + "', '" + lastnameBox.Text + "', '" + patronymicBox.Text + "', '" + date + "', '" + DateTime.Today.ToString() + "', '" + emailBox.Text + "', '" + phoneBox.Text + "', '" + gender + "')");
+                        }
+                        else
+                        {
+                            SqlQuery("INSERT INTO Client (FirstName, LastName, Patronymic, Birthday, RegistrationDate, Email, Phone, GenderCode, PhotoPath) VALUES ('" + firstnameBox.Text + "', '" + lastnameBox.Text + "', '" + patronymicBox.Text + "', '" + date + "', '" + DateTime.Today.ToString() + "', '" + emailBox.Text + "', '" + phoneBox.Text + "', '" + gender + "', '" + "Клиенты\\" + path + "')");
+                        }
                         MessageBox.Show("Регистрация прошла успешно");
                     }
                     catch
@@ -135,6 +145,16 @@ namespace Clients
                     MessageBox.Show("Возникла ошибка при редактировании");
                 }
             }
+        }
+
+        private void addPhoto_Click(object sender, EventArgs e)
+        {
+            var ofd = new OpenFileDialog();
+            userPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+            if (ofd.ShowDialog(this) == DialogResult.OK)
+                userPhoto.Image = Image.FromFile(ofd.FileName);
+                path = Path.GetFileName(ofd.FileName);
+            imageSelected = true;
         }
     }
 }

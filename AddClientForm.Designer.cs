@@ -46,6 +46,9 @@ namespace Clients
             this.label8 = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.birthdayPicker = new System.Windows.Forms.DateTimePicker();
+            this.userPhoto = new System.Windows.Forms.PictureBox();
+            this.addPhoto = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.userPhoto)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -185,7 +188,7 @@ namespace Clients
             // 
             this.saveButton.Location = new System.Drawing.Point(103, 169);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(302, 33);
+            this.saveButton.Size = new System.Drawing.Size(436, 33);
             this.saveButton.TabIndex = 17;
             this.saveButton.Text = "Сохранить";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -199,11 +202,31 @@ namespace Clients
             this.birthdayPicker.TabIndex = 18;
             this.birthdayPicker.ValueChanged += new System.EventHandler(this.birthdayPicker_ValueChanged);
             // 
+            // userPhoto
+            // 
+            this.userPhoto.Location = new System.Drawing.Point(441, 33);
+            this.userPhoto.Name = "userPhoto";
+            this.userPhoto.Size = new System.Drawing.Size(98, 85);
+            this.userPhoto.TabIndex = 19;
+            this.userPhoto.TabStop = false;
+            // 
+            // addPhoto
+            // 
+            this.addPhoto.Location = new System.Drawing.Point(441, 130);
+            this.addPhoto.Name = "addPhoto";
+            this.addPhoto.Size = new System.Drawing.Size(98, 22);
+            this.addPhoto.TabIndex = 20;
+            this.addPhoto.Text = "Добавить фото";
+            this.addPhoto.UseVisualStyleBackColor = true;
+            this.addPhoto.Click += new System.EventHandler(this.addPhoto_Click);
+            // 
             // AddClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(433, 229);
+            this.ClientSize = new System.Drawing.Size(569, 224);
+            this.Controls.Add(this.addPhoto);
+            this.Controls.Add(this.userPhoto);
             this.Controls.Add(this.birthdayPicker);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.label8);
@@ -223,6 +246,7 @@ namespace Clients
             this.Controls.Add(this.label1);
             this.Name = "AddClientForm";
             this.Text = "AddClientForm";
+            ((System.ComponentModel.ISupportInitialize)(this.userPhoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,5 +270,7 @@ namespace Clients
         public System.Windows.Forms.Label label8;
         public System.Windows.Forms.Button saveButton;
         public System.Windows.Forms.DateTimePicker birthdayPicker;
+        public System.Windows.Forms.PictureBox userPhoto;
+        public System.Windows.Forms.Button addPhoto;
     }
 }

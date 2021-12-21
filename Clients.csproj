@@ -93,5 +93,8 @@
   <ItemGroup>
     <Content Include="Resources\beauty_logo %281%29.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Клиенты\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
