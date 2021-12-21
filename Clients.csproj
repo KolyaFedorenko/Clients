@@ -138,6 +138,7 @@
     <Content Include="Resources\Клиенты\7.jpg" />
     <Content Include="Resources\Клиенты\8.jpg" />
     <Content Include="Resources\Клиенты\9.jpg" />
+    <Content Include="Resources\Клиенты\default.png" />
     <Content Include="Resources\Клиенты\m1.jpg" />
     <Content Include="Resources\Клиенты\m10.jpg" />
     <Content Include="Resources\Клиенты\m11.jpg" />

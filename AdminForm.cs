@@ -313,7 +313,14 @@ namespace Clients
             clientform.phoneBox.Text = clientsView.Rows[rowindex].Cells[7].Value.ToString();
             clientform.genderBox.SelectedItem = clientsView.Rows[rowindex].Cells[8].Value.ToString();
             clientform.userPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
-            clientform.userPhoto.Image = Image.FromFile(@"C:\Users\is12332\Source\Repos\Clients4\Resources\" + clientsView.Rows[rowindex].Cells[9].Value.ToString());
+            try
+            {
+                clientform.userPhoto.Image = Image.FromFile(@"C:\Users\is12332\Source\Repos\Clients4\Resources\" + clientsView.Rows[rowindex].Cells[9].Value.ToString());
+            }
+            catch (Exception)
+            {
+                clientform.userPhoto.Image = Image.FromFile(@"C:\Users\is12332\Source\Repos\Clients4\Resources\Клиенты\default.png");
+            }
             clientform.options = "edit";
             clientform.Show();
         }

@@ -149,15 +149,22 @@ namespace Clients
 
         private void addPhoto_Click(object sender, EventArgs e)
         {
-            var ofd = new OpenFileDialog();
-            userPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
-            if (ofd.ShowDialog(this) == DialogResult.OK)
-                userPhoto.Image = Image.FromFile(ofd.FileName);
+            try
+            {
+                var ofd = new OpenFileDialog();
+                userPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+                if (ofd.ShowDialog(this) == DialogResult.OK)
+                    userPhoto.Image = Image.FromFile(ofd.FileName);
                 File.Copy(ofd.FileName, Path.Combine(@"C:\Users\is12332\Source\Repos\Clients4\Resources\Клиенты\", Path.GetFileName(ofd.FileName)));
                 path = Path.GetFileName(ofd.FileName);
-                MessageBox.Show(path);
-            imageSelected = true;
-            SaveFileDialog saveFile = new SaveFileDialog();
+                imageSelected = true;
+                SaveFileDialog saveFile = new SaveFileDialog();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Картинка с таким именем уже была загружена!\nПереименуйте картинку и повторите попытку");
+            }
+
         }
     }
 }
