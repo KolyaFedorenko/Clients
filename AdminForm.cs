@@ -335,21 +335,29 @@ namespace Clients
 
         private void deleteClient_Click(object sender, EventArgs e)
         {
-            int rowindex = clientsView.CurrentCell.RowIndex;
-            string id = clientsView.Rows[rowindex].Cells[0].Value.ToString();
-            DialogResult result = MessageBox.Show("Удалить клиента с ID " + id + "?", " Подтверждение удаления", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            if (visitsLabel.Text == "0")
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                int rowindex = clientsView.CurrentCell.RowIndex;
+                string id = clientsView.Rows[rowindex].Cells[0].Value.ToString();
+                DialogResult result = MessageBox.Show("Удалить клиента с ID " + id + "?", " Подтверждение удаления", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
                 {
-                    string sql = "DELETE FROM Client WHERE ID='" + id + "'";
-                    connection.Open();
-                    SqlCommand command = new SqlCommand(sql, connection);
-                    command.ExecuteNonQuery();
-                    connection.Close();
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        string sql = "DELETE FROM Client WHERE ID='" + id + "'";
+                        connection.Open();
+                        SqlCommand command = new SqlCommand(sql, connection);
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                    ShowTable("SELECT * FROM Client");
                 }
-                ShowTable("SELECT * FROM Client");
             }
+            else
+            {
+                MessageBox.Show("Данного клиента нельзя удалить, так как у него есть посещения");
+            }
+
         }
 
         private void clientVisits_Click(object sender, EventArgs e)
