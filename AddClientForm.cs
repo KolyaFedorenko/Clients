@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,6 +24,11 @@ namespace Clients
         public string path;
         bool imageSelected = false;
 
+        /// <summary>
+        /// Метод для проверки корректности вводимых фамилии, имени и отчества с помощью регулярних выражений. Принимает текст элемента textBox в качестве параметра
+        /// </summary>
+        /// <param name="textbox"> Текст элемента textBox</param>
+        /// <returns></returns>
         string checkFIO(string textbox)
         {
             if (Regex.IsMatch(textbox, @"[1\\2\\3\\4\\5\\6\\7\\8\\9\\0\\!\#\$\%\^\&\*\(\)\}\{\,\.\,\/\\?\'\+\=\:\;\№@]"))
@@ -37,6 +42,7 @@ namespace Clients
             }
             return textbox;
         }
+
         public AddClientForm()
         {
             InitializeComponent();
@@ -44,6 +50,10 @@ namespace Clients
             genderBox.Items.Add("ж");
         }
 
+        /// <summary>
+        /// Метод для выполнения запроса к базе данных SQL, в качестве параметра принимает INSERT, UPDATE или DELETE SQL-запрос
+        /// </summary>
+        /// <param name="sql"> INSERT, UPDATE или DELETE SQL-запрос</param>
         void SqlQuery(string sql)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -55,21 +65,41 @@ namespace Clients
             }
         }
 
+        /// <summary>
+        /// Метод для обработки ввода текста в поле имени
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void firstnameBox_TextChanged(object sender, EventArgs e)
         {
             firstnameBox.Text = checkFIO(firstnameBox.Text);
         }
 
+        /// <summary>
+        /// Метод для обработки ввода текста в поле фамилии
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lastnameBox_TextChanged(object sender, EventArgs e)
         {
             lastnameBox.Text = checkFIO(lastnameBox.Text);
         }
 
+        /// <summary>
+        /// Метод для обработки ввода текста в отчества 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void patronymicBox_TextChanged(object sender, EventArgs e)
         {
             patronymicBox.Text = checkFIO(patronymicBox.Text);
         }
 
+        /// <summary>
+        /// Метод для обработки ввода текста в поле e-mail
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void emailBox_TextChanged(object sender, EventArgs e)
         {
             if (Regex.IsMatch(emailBox.Text, @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" + @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$"))
@@ -82,6 +112,11 @@ namespace Clients
             }
         }
 
+        /// <summary>
+        /// Метод для обработки ввода текста в поле телефона
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void phoneBox_TextChanged(object sender, EventArgs e)
         {
             if (Regex.IsMatch(phoneBox.Text, @"^[0-9]+$") || Regex.IsMatch(phoneBox.Text, @"[+\-\(\)\ \@]"))
@@ -95,16 +130,31 @@ namespace Clients
             }
         }
 
+        /// <summary>
+        /// Метод для обработки выбора значения в birthdayPicker
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void birthdayPicker_ValueChanged(object sender, EventArgs e)
         {
             date = birthdayPicker.Value.ToString("yyyy-MM-dd");
         }
 
+        /// <summary>
+        ///  Метод для обработки выбора значения в genderBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void genderBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             gender = genderBox.SelectedItem.ToString();
         }
 
+        /// <summary>
+        /// Метод обработки нажатия на кнопку "Сохранить"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saveButton_Click(object sender, EventArgs e)
         {
             if (options == "add")
@@ -121,11 +171,11 @@ namespace Clients
                         {
                             SqlQuery("INSERT INTO Client (FirstName, LastName, Patronymic, Birthday, RegistrationDate, Email, Phone, GenderCode, PhotoPath) VALUES ('" + firstnameBox.Text + "', '" + lastnameBox.Text + "', '" + patronymicBox.Text + "', '" + date + "', '" + DateTime.Today.ToString() + "', '" + emailBox.Text + "', '" + phoneBox.Text + "', '" + gender + "', '" + "Клиенты\\" + path + "')");
                         }
-                        MessageBox.Show("Регистрация прошла успешно");
+                        MessageBox.Show("Добавление прошло успешно");
                     }
                     catch
                     {
-                        MessageBox.Show("Возникла ошибка при регистрации, проверьте заполнение всех полей");
+                        MessageBox.Show("Возникла ошибка при добавлении, проверьте заполнение всех полей");
                     }
 
                 }
@@ -148,6 +198,11 @@ namespace Clients
             }
         }
 
+        /// <summary>
+        /// Метод для обработки нажатия на кнопку "Добавить фото"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addPhoto_Click(object sender, EventArgs e)
         {
             try
@@ -169,5 +224,3 @@ namespace Clients
         }
     }
 }
-
-
