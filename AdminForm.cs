@@ -11,13 +11,13 @@ using System.Windows.Forms;
 
 namespace Clients
 {
-    public partial class Form1 : Form
+    public partial class AdminForm : Form
     {
         public string connectionString = "Data Source=10.10.1.24;Initial Catalog=UPF;Persist Security Info=True;User ID=pro-41;Password=Pro_41student";
         int sdoffset = 10;
         int sdfetch = 0;
         AddClientForm clientform;
-        public Form1()
+        public AdminForm()
         {
             InitializeComponent();
             ShowTable("SELECT * FROM Client");

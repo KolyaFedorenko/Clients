@@ -1,7 +1,7 @@
 ﻿
 namespace Clients
 {
-    partial class Form1
+    partial class AdminForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -29,7 +29,7 @@ namespace Clients
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
             this.clientsView = new System.Windows.Forms.DataGridView();
             this.comboRows = new System.Windows.Forms.ComboBox();
             this.nextPage = new System.Windows.Forms.Button();
