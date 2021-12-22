@@ -29,7 +29,7 @@ namespace Clients
             maxRowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client");
         }
 
-        public void ShowTable(string sql) // метод для отображения таблицы
+        public void ShowTable(string sql)
         {
             try
             { 
@@ -52,7 +52,7 @@ namespace Clients
 
         }
 
-        string SelectMaxID(string sql) // метод для получения количества записей в бд
+        string SelectMaxID(string sql)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -65,14 +65,14 @@ namespace Clients
             }
         }
 
-        void RowsCount() // метод для подсчета строк в dataGridView
+        void RowsCount()
         {
             int rows = clientsView.Rows.Count;
             rows = rows - 1;
             rowsCount.Text = rows.ToString();
         }
 
-        void AddItems() // метод для добавления вариантов в comboBox
+        void AddItems()
         {
             comboRows.Items.Add("10 записей");
             comboRows.Items.Add("50 записей");
@@ -105,7 +105,7 @@ namespace Clients
             SelectDigit(sdoffset, sdfetch);
         }
 
-        void DBSearch(string text, string column) // метод для поиска по бд
+        void DBSearch(string text, string column)
         {
             if (text != "")
             {
