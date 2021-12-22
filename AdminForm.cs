@@ -16,7 +16,7 @@ namespace Clients
         public string connectionString = "Data Source=10.10.1.24;Initial Catalog=UPF;Persist Security Info=True;User ID=pro-41;Password=Pro_41student";
         int sdoffset = 10;
         int sdfetch = 0;
-        AddClientForm clientform = new AddClientForm();
+        AddClientForm clientform;
         public Form1()
         {
             InitializeComponent();
@@ -306,6 +306,7 @@ namespace Clients
 
         private void editClient_Click(object sender, EventArgs e)
         {
+
             clientform = new AddClientForm();
             int rowindex = clientsView.CurrentCell.RowIndex;
             clientform.idBox.Text = clientsView.Rows[rowindex].Cells[0].Value.ToString();

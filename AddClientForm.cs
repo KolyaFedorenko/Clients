@@ -15,7 +15,7 @@ namespace Clients
 {
     public partial class AddClientForm : Form
     {
-        public string connectionString = "Data Source=10.10.1.24;Initial Catalog=UPF;Persist Security Info=True;User ID=pro-41;Password=Pro_41student";
+        string connectionString = "Data Source=10.10.1.24;Initial Catalog=UPF;Persist Security Info=True;User ID=pro-41;Password=Pro_41student";
         public string date;
         public string gender;
         bool rightEmail;
@@ -23,6 +23,7 @@ namespace Clients
         public string options;
         public string path;
         bool imageSelected = false;
+
         string checkFIO(string textbox)
         {
             if (Regex.IsMatch(textbox, @"[1\\2\\3\\4\\5\\6\\7\\8\\9\\0\\!\#\$\%\^\&\*\(\)\}\{\,\.\,\/\\?\'\+\=\:\;\№@]"))
