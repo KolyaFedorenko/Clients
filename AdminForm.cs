@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,7 +21,10 @@ namespace Clients
         {
             InitializeComponent();
             ShowTable("SELECT * FROM Client");
-            AddItems();
+            comboRows.Items.Add("10 записей");
+            comboRows.Items.Add("50 записей");
+            comboRows.Items.Add("200 записей");
+            comboRows.Items.Add("Все записи");
             comboRows.SelectedItem = "Все записи";
             RowsCount();
             nextPage.Enabled = false;
@@ -29,6 +32,10 @@ namespace Clients
             maxRowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client");
         }
 
+        /// <summary>
+        /// Метод для отображения таблицы в соответствии с SQL-запросом SELECT, который принимается в качестве параметра
+        /// </summary>
+        /// <param name="sql"> SQL-запрос с SELECT </param>
         public void ShowTable(string sql) // метод для отображения таблицы
         {
             try
@@ -52,6 +59,11 @@ namespace Clients
 
         }
 
+        /// <summary>
+        /// Метод для получения количества записей в базе данных, принимает SQL-запрос с SELECT в качестве параметра
+        /// </summary>
+        /// <param name="sql"> SQL-запрос с SELECT </param>
+        /// <returns> Возвращает количество записей в таблице в соответствии с переданным SQL-запросом</returns>
         string SelectMaxID(string sql) // метод для получения количества записей в бд
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -65,32 +77,41 @@ namespace Clients
             }
         }
 
-        void RowsCount() // метод для подсчета строк в dataGridView
+        /// <summary>
+        /// Метод для подсчета отображаемых строк в clientsView
+        /// </summary>
+        void RowsCount() // метод для подсчета строк в clientsView
         {
             int rows = clientsView.Rows.Count;
             rows = rows - 1;
             rowsCount.Text = rows.ToString();
         }
 
-        void AddItems() // метод для добавления вариантов в comboBox
-        {
-            comboRows.Items.Add("10 записей");
-            comboRows.Items.Add("50 записей");
-            comboRows.Items.Add("200 записей");
-            comboRows.Items.Add("Все записи");
-        }
-
+        /// <summary>
+        /// Метод, объединяющий методы ShowTable() и RowsCount() для избежания дублирования кода
+        /// </summary>
+        /// <param name="sql"> SQL-запрос с SELECT </param>
         void SelectBy(string sql)
         {
             ShowTable(sql);
             RowsCount();
         }
 
+        /// <summary>
+        /// Вспомогательный метод для осуществления навигации, принимает значения смещения и выборки в качестве параметров
+        /// </summary>
+        /// <param name="offset"> Значение смещения </param>
+        /// <param name="fetch"> Значение выборки </param>
         void SelectDigit(int offset, int fetch)
         {
             ShowTable("SELECT * FROM Client ORDER BY ID OFFSET " + offset.ToString() + " ROWS FETCH NEXT " + fetch.ToString() + " ROWS ONLY");
         }
 
+        /// <summary>
+        /// Метод для перехода к "следующей странице" clientsView, принимает значения смещения и выборки в качестве параметров
+        /// </summary>
+        /// <param name="offsetop"> Значение смещения </param>
+        /// <param name="sdfetchop"> Значение выборки </param>
         void PaginationPlus(int offsetop, int sdfetchop)
         {
             sdoffset = sdoffset + offsetop;
@@ -98,6 +119,11 @@ namespace Clients
             SelectDigit(sdoffset, sdfetch);
         }
 
+        /// <summary>
+        /// Метод для перехода к "предыдущей странице" clientsView, принимает значения смещения и выборки в качестве параметров
+        /// </summary>
+        /// <param name="offsetop"> Значение смещения </param>
+        /// <param name="sdfetchop"> Значение выборки </param>
         void PaginationMinus(int offsetop, int sdfetchop)
         {
             sdoffset = sdoffset - offsetop;
@@ -105,6 +131,11 @@ namespace Clients
             SelectDigit(sdoffset, sdfetch);
         }
 
+        /// <summary>
+        /// Метод для поиска записей в базе данных, принимает текст для поиска и столбец для поиска соответствий введенному тексту в качестве параметров
+        /// </summary>
+        /// <param name="text"> Текст, по которому производится поиск </param>
+        /// <param name="column"> Название столбца, в котором производится поиск соответствий введенному тексту</param>
         void DBSearch(string text, string column) // метод для поиска по бд
         {
             if (text != "")
@@ -123,6 +154,11 @@ namespace Clients
             }
         }
 
+        /// <summary>
+        /// Метод для обработки выбора значения в comboRows
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void comboRows_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedState = comboRows.SelectedItem.ToString();
@@ -152,6 +188,11 @@ namespace Clients
             }
         }
 
+        /// <summary>
+        /// Метод для обработки нажатия на кнопку "Предыдущая страница"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void prevPage_Click(object sender, EventArgs e)
         {
                 if (comboRows.SelectedItem == "10 записей")
@@ -168,6 +209,11 @@ namespace Clients
                 }
         }
 
+        /// <summary>
+        /// Метод для обработки нажатия на кнопку "Следующая страница"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nextPage_Click(object sender, EventArgs e)
         {
             if (comboRows.SelectedItem=="10 записей")
@@ -188,37 +234,72 @@ namespace Clients
 	        }
         }
 
+        /// <summary>
+        /// Метод для обработки ввода текста в поле поиска по имени
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nameSearch_TextChanged(object sender, EventArgs e)
         {
             DBSearch(nameSearch.Text, "FirstName");
         }
 
+        /// <summary>
+        /// Метод для обработки ввода текста в поле поиска по фамилии
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lastNameSearch_TextChanged(object sender, EventArgs e)
         {
             DBSearch(lastNameSearch.Text, "LastName");
         }
 
+        /// <summary>
+        /// Метод для обработки ввода текста в поле поиска по отчеству
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void patronymicSearch_TextChanged(object sender, EventArgs e)
         {
             DBSearch(patronymicSearch.Text, "Patronymic");
         }
 
+        /// <summary>
+        /// Метод для обработки ввода текста в поле поиска по e-mail
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void emailSearch_TextChanged(object sender, EventArgs e)
         {
             DBSearch(emailSearch.Text, "Email");
         }
 
+        /// <summary>
+        /// Метод для обработки ввода текста в поле поиска по телефону
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void phoneSearch_TextChanged(object sender, EventArgs e)
         {
             DBSearch(phoneSearch.Text, "Phone");
         }
 
+        /// <summary>
+        /// Метод для обработки нажатия на кнопку сортировки клиентов по фамилии
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lastNameSort_Click(object sender, EventArgs e)
         {
             ShowTable("SELECT * FROM Client ORDER BY Lastname");
             RowsCount();
         }
 
+        /// <summary>
+        /// Метод для обработки нажатия на кнопку фильрации по мужскому полу
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void maleFilter_Click(object sender, EventArgs e)
         {
             femaleFilter.Enabled = false;
@@ -243,7 +324,12 @@ namespace Clients
                 RowsCount();
             }
         }
-        
+
+        /// <summary>
+        /// Метод для обработки нажатия на кнопку фильрации по женскому полу
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void femaleFilter_Click(object sender, EventArgs e)
         {
             maleFilter.Enabled = false;
@@ -269,6 +355,11 @@ namespace Clients
             }
         }
 
+        /// <summary>
+        /// Метод для обработки нажатия на кнопку сброса фильтрации
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void resetFilter_Click(object sender, EventArgs e)
         {
             femaleFilter.Enabled = true;
@@ -295,6 +386,11 @@ namespace Clients
             }
         }
 
+        /// <summary>
+        /// Метод для обработки нажатия на кнопку "Добавить"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addClient_Click(object sender, EventArgs e)
         {
             clientform = new AddClientForm();
@@ -304,9 +400,13 @@ namespace Clients
             clientform.Show();
         }
 
+        /// <summary>
+        /// Метод для обработки нажатия на кнопку "Редактировать"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void editClient_Click(object sender, EventArgs e)
         {
-
             clientform = new AddClientForm();
             int rowindex = clientsView.CurrentCell.RowIndex;
             clientform.idBox.Text = clientsView.Rows[rowindex].Cells[0].Value.ToString();
@@ -333,6 +433,11 @@ namespace Clients
             clientform.Show();
         }
 
+        /// <summary>
+        /// Метод для обработки нажатия на кнопку "Удалить"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void deleteClient_Click(object sender, EventArgs e)
         {
             int rowindex = clientsView.CurrentCell.RowIndex;
@@ -352,6 +457,11 @@ namespace Clients
             }
         }
 
+        /// <summary>
+        /// Метод для обработки нажатия на кнопку "Посещения"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void clientVisits_Click(object sender, EventArgs e)
         {
             int rowindex = clientsView.CurrentCell.RowIndex;
@@ -368,6 +478,11 @@ namespace Clients
             }
         }
 
+        /// <summary>
+        /// Метод для обработки нажатия на ячейки clientsView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void clientsView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -385,4 +500,3 @@ namespace Clients
         }
     }
 }
-    
