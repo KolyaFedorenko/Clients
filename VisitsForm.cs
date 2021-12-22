@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +21,11 @@ namespace Clients
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Метод, вызываемый при загрузке формы "VisitsForm"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void VisitsForm_Load(object sender, EventArgs e)
         {
             try
