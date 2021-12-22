@@ -28,6 +28,7 @@ namespace Clients
             prevPage.Enabled = false;
             maxRowsCount.Text = SelectMaxID("SELECT COUNT (*) FROM Client");
         }
+
         public void ShowTable(string sql) // метод для отображения таблицы
         {
             try
@@ -50,6 +51,7 @@ namespace Clients
             }
 
         }
+
         string SelectMaxID(string sql) // метод для получения количества записей в бд
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -62,12 +64,14 @@ namespace Clients
                 return maxId.ToString();
             }
         }
+
         void RowsCount() // метод для подсчета строк в dataGridView
         {
             int rows = clientsView.Rows.Count;
             rows = rows - 1;
             rowsCount.Text = rows.ToString();
         }
+
         void AddItems() // метод для добавления вариантов в comboBox
         {
             comboRows.Items.Add("10 записей");
@@ -75,15 +79,18 @@ namespace Clients
             comboRows.Items.Add("200 записей");
             comboRows.Items.Add("Все записи");
         }
+
         void SelectBy(string sql)
         {
             ShowTable(sql);
             RowsCount();
         }
+
         void SelectDigit(int offset, int fetch)
         {
             ShowTable("SELECT * FROM Client ORDER BY ID OFFSET " + offset.ToString() + " ROWS FETCH NEXT " + fetch.ToString() + " ROWS ONLY");
         }
+
         void PaginationPlus(int offsetop, int sdfetchop)
         {
             sdoffset = sdoffset + offsetop;
@@ -236,7 +243,7 @@ namespace Clients
                 RowsCount();
             }
         }
-
+        
         private void femaleFilter_Click(object sender, EventArgs e)
         {
             maleFilter.Enabled = false;
@@ -346,7 +353,34 @@ namespace Clients
 
         private void clientVisits_Click(object sender, EventArgs e)
         {
-            ShowTable("SELECT Client.ID, FirstName, LastName, Patronymic, COUNT(StartTime) as Visit, Birthday, RegistrationDate, Email, Phone, GenderCode FROM Client LEFT JOIN ClientService ON ClientService.ClientID = Client.ID Group by Client.ID, FirstName, LastName, Patronymic, Birthday, RegistrationDate, Email, Phone, GenderCode ORDER BY Visit DESC");
+            int rowindex = clientsView.CurrentCell.RowIndex;
+            string id = clientsView.Rows[rowindex].Cells[0].Value.ToString();
+            VisitsForm visits = new VisitsForm();
+            visits.id = id;
+            if (visitsLabel.Text != "0")
+            {
+                visits.Show();
+            }
+            else
+            {
+                MessageBox.Show("У данного клиента еще нет посещений");
+            }
+        }
+
+        private void clientsView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                int rowindex = clientsView.CurrentCell.RowIndex;
+                string id = clientsView.Rows[rowindex].Cells[0].Value.ToString();
+                string sql = "SELECT COUNT (StartTime) as Visit, Client.ID, FirstName FROM Client LEFT JOIN ClientService ON ClientService.ClientID = Client.ID Where Client.ID = " + id + " GROUP BY Client.ID, FirstName ORDER BY Visit DESC";
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+                int reader = (int)command.ExecuteScalar();
+                string clientVisits = reader.ToString();
+                visitsLabel.Text = clientVisits;
+                connection.Close();
+            }
         }
     }
 }

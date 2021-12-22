@@ -63,6 +63,8 @@ namespace Clients
             this.editClient = new System.Windows.Forms.Button();
             this.clientVisits = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.visitsLabel = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.clientsView)).BeginInit();
@@ -82,6 +84,8 @@ namespace Clients
             this.clientsView.Name = "clientsView";
             this.clientsView.Size = new System.Drawing.Size(885, 523);
             this.clientsView.TabIndex = 0;
+            this.clientsView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.clientsView_CellContentClick);
+            this.clientsView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.clientsView_CellContentClick);
             // 
             // comboRows
             // 
@@ -380,7 +384,7 @@ namespace Clients
             // 
             this.clientVisits.Location = new System.Drawing.Point(6, 16);
             this.clientVisits.Name = "clientVisits";
-            this.clientVisits.Size = new System.Drawing.Size(184, 83);
+            this.clientVisits.Size = new System.Drawing.Size(184, 49);
             this.clientVisits.TabIndex = 24;
             this.clientVisits.Text = "Посещения";
             this.clientVisits.UseVisualStyleBackColor = true;
@@ -388,6 +392,8 @@ namespace Clients
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.visitsLabel);
+            this.groupBox5.Controls.Add(this.label7);
             this.groupBox5.Controls.Add(this.clientVisits);
             this.groupBox5.Location = new System.Drawing.Point(689, 529);
             this.groupBox5.Name = "groupBox5";
@@ -395,6 +401,24 @@ namespace Clients
             this.groupBox5.TabIndex = 25;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Посещения клиентов";
+            // 
+            // visitsLabel
+            // 
+            this.visitsLabel.AutoSize = true;
+            this.visitsLabel.Location = new System.Drawing.Point(168, 77);
+            this.visitsLabel.Name = "visitsLabel";
+            this.visitsLabel.Size = new System.Drawing.Size(13, 13);
+            this.visitsLabel.TabIndex = 28;
+            this.visitsLabel.Text = "?";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 76);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(157, 13);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "Посещения данного клиента:";
             // 
             // groupBox6
             // 
@@ -444,6 +468,7 @@ namespace Clients
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
@@ -452,8 +477,6 @@ namespace Clients
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView clientsView;
         private System.Windows.Forms.ComboBox comboRows;
         private System.Windows.Forms.Button nextPage;
         private System.Windows.Forms.Button prevPage;
@@ -488,6 +511,9 @@ namespace Clients
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox7;
+        public System.Windows.Forms.DataGridView clientsView;
+        private System.Windows.Forms.Label visitsLabel;
+        private System.Windows.Forms.Label label7;
     }
 }
 
