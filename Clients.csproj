@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddClientForm.Designer.cs">
+      <DependentUpon>AddClientForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,6 +62,15 @@
     <Compile Include="DatabaseConnection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VisitsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VisitsForm.Designer.cs">
+      <DependentUpon>VisitsForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddClientForm.resx">
+      <DependentUpon>AddClientForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -67,6 +83,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="VisitsForm.resx">
+      <DependentUpon>VisitsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -82,6 +101,108 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\beauty_logo %281%29.ico" />
+    <Content Include="Resources\Клиенты\1.jpg" />
+    <Content Include="Resources\Клиенты\10.jpg" />
+    <Content Include="Resources\Клиенты\11.jpg" />
+    <Content Include="Resources\Клиенты\12.jpg" />
+    <Content Include="Resources\Клиенты\13.jpg" />
+    <Content Include="Resources\Клиенты\14.jpg" />
+    <Content Include="Resources\Клиенты\15.jpg" />
+    <Content Include="Resources\Клиенты\16.jpg" />
+    <Content Include="Resources\Клиенты\17.jpg" />
+    <Content Include="Resources\Клиенты\18.jpg" />
+    <Content Include="Resources\Клиенты\19.jpg" />
+    <Content Include="Resources\Клиенты\2.jpg" />
+    <Content Include="Resources\Клиенты\20.jpg" />
+    <Content Include="Resources\Клиенты\21.jpg" />
+    <Content Include="Resources\Клиенты\22.jpg" />
+    <Content Include="Resources\Клиенты\23.jpg" />
+    <Content Include="Resources\Клиенты\24.jpg" />
+    <Content Include="Resources\Клиенты\25.jpg" />
+    <Content Include="Resources\Клиенты\26.jpg" />
+    <Content Include="Resources\Клиенты\27.jpg" />
+    <Content Include="Resources\Клиенты\28.jpg" />
+    <Content Include="Resources\Клиенты\29.jpg" />
+    <Content Include="Resources\Клиенты\3.jpg" />
+    <Content Include="Resources\Клиенты\30.jpg" />
+    <Content Include="Resources\Клиенты\31.jpg" />
+    <Content Include="Resources\Клиенты\32.jpg" />
+    <Content Include="Resources\Клиенты\33.jpg" />
+    <Content Include="Resources\Клиенты\34.jpg" />
+    <Content Include="Resources\Клиенты\35.jpg" />
+    <Content Include="Resources\Клиенты\36.jpg" />
+    <Content Include="Resources\Клиенты\37.jpg" />
+    <Content Include="Resources\Клиенты\38.jpg" />
+    <Content Include="Resources\Клиенты\39.jpg" />
+    <Content Include="Resources\Клиенты\4.jpg" />
+    <Content Include="Resources\Клиенты\40.jpg" />
+    <Content Include="Resources\Клиенты\41.jpg" />
+    <Content Include="Resources\Клиенты\42.jpg" />
+    <Content Include="Resources\Клиенты\43.jpg" />
+    <Content Include="Resources\Клиенты\44.jpg" />
+    <Content Include="Resources\Клиенты\47.jpg" />
+    <Content Include="Resources\Клиенты\48.jpg" />
+    <Content Include="Resources\Клиенты\5.jpg" />
+    <Content Include="Resources\Клиенты\6.jpg" />
+    <Content Include="Resources\Клиенты\7.jpg" />
+    <Content Include="Resources\Клиенты\8.jpg" />
+    <Content Include="Resources\Клиенты\9.jpg" />
+    <Content Include="Resources\Клиенты\default.png" />
+    <Content Include="Resources\Клиенты\m1.jpg" />
+    <Content Include="Resources\Клиенты\m10.jpg" />
+    <Content Include="Resources\Клиенты\m11.jpg" />
+    <Content Include="Resources\Клиенты\m12.jpg" />
+    <Content Include="Resources\Клиенты\m13.jpg" />
+    <Content Include="Resources\Клиенты\m14.jpg" />
+    <Content Include="Resources\Клиенты\m15.jpg" />
+    <Content Include="Resources\Клиенты\m16.jpg" />
+    <Content Include="Resources\Клиенты\m17.jpg" />
+    <Content Include="Resources\Клиенты\m18.jpg" />
+    <Content Include="Resources\Клиенты\m19.jpg" />
+    <Content Include="Resources\Клиенты\m2.jpg" />
+    <Content Include="Resources\Клиенты\m20.jpg" />
+    <Content Include="Resources\Клиенты\m21.jpg" />
+    <Content Include="Resources\Клиенты\m22.jpg" />
+    <Content Include="Resources\Клиенты\m23.jpg" />
+    <Content Include="Resources\Клиенты\m24.jpg" />
+    <Content Include="Resources\Клиенты\m25.jpg" />
+    <Content Include="Resources\Клиенты\m26.jpg" />
+    <Content Include="Resources\Клиенты\m27.jpg" />
+    <Content Include="Resources\Клиенты\m28.jpg" />
+    <Content Include="Resources\Клиенты\m29.jpg" />
+    <Content Include="Resources\Клиенты\m3.jpg" />
+    <Content Include="Resources\Клиенты\m30.jpg" />
+    <Content Include="Resources\Клиенты\m31.jpg" />
+    <Content Include="Resources\Клиенты\m32.jpg" />
+    <Content Include="Resources\Клиенты\m33.jpg" />
+    <Content Include="Resources\Клиенты\m34.jpg" />
+    <Content Include="Resources\Клиенты\m35.jpg" />
+    <Content Include="Resources\Клиенты\m36.jpg" />
+    <Content Include="Resources\Клиенты\m37.jpg" />
+    <Content Include="Resources\Клиенты\m38.jpg" />
+    <Content Include="Resources\Клиенты\m39.jpg" />
+    <Content Include="Resources\Клиенты\m4.jpg" />
+    <Content Include="Resources\Клиенты\m40.jpg" />
+    <Content Include="Resources\Клиенты\m41.jpg" />
+    <Content Include="Resources\Клиенты\m42.jpg" />
+    <Content Include="Resources\Клиенты\m43.jpg" />
+    <Content Include="Resources\Клиенты\m44.jpg" />
+    <Content Include="Resources\Клиенты\m45.jpg" />
+    <Content Include="Resources\Клиенты\m46.jpg" />
+    <Content Include="Resources\Клиенты\m47.jpg" />
+    <Content Include="Resources\Клиенты\m48.jpg" />
+    <Content Include="Resources\Клиенты\m49.jpg" />
+    <Content Include="Resources\Клиенты\m5.jpg" />
+    <Content Include="Resources\Клиенты\m50.jpg" />
+    <Content Include="Resources\Клиенты\m6.jpg" />
+    <Content Include="Resources\Клиенты\m7.jpg" />
+    <Content Include="Resources\Клиенты\m8.jpg" />
+    <Content Include="Resources\Клиенты\m9.jpg" />
+    <Content Include="Resources\Клиенты\m96.jpg" />
+    <Content Include="Resources\Клиенты\m97.jpg" />
+    <Content Include="Resources\Клиенты\m98.jpg" />
+    <Content Include="Resources\Клиенты\m99.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
